@@ -60,6 +60,12 @@ tensorflowを用いると順伝播計算を記述するだけで,誤差逆伝播
    sess.run(w)
    sess.run(y, feed_dict={x: 入力バッチ})
 ```
+ヒント 入力データに対する正答率を知りたいときは以下の式を（5.）より前に書きsess.run()で呼び出す。
+```
+   correct_prediction = tf.equal(tf.argmax(p, 1), tf.argmax(t, 1))
+   accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
+```
+
 
 
 ### 演習1-1. MNISTの分類
