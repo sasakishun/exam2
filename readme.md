@@ -45,12 +45,20 @@ tenosorflowを用いる場合,学習の流れは以下のようになる。
    sess = tf.InteractiveSession()
    sess.run(tf.initialize_all_variables())
 ```
-6. 4のtrainstepを何度も実行
+6. 4のtrain_stepを何度も実行
 ```
    sess.run(train_step, feed_dict={x: 入力バッチ, t: 教師バッチ})
 ```
-x = tf.placeholder(tf.float32, [None, 784])のようにNoneを用いると,
-[1, 784]や[124, 784]など様々なバッチサイズの入力を受付可能になる。
+注意点 tensorflowによって定義した変数を出力したい場合は下記のようにし,
+      sess.run()を実行しなくてはならない。ここでは第1引数の値を求めるのに必要な外部からの入力は
+      feed_dict={}によって示さなくてはならない。
+      下記の例ではwは外部入力がなくとも値を持つが,yを計算するには入力データが必要なため
+      xに実際の入力を入れる。
+```
+   sess.run(w)
+   sess.run(y, feed_dict={x: 入力バッチ})
+   
+```
 
 
 ### 演習1-1. MNISTの分類
