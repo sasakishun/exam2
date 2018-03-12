@@ -57,7 +57,6 @@ tenosorflowを用いる場合,学習の流れは以下のようになる。
 ```
    sess.run(w)
    sess.run(y, feed_dict={x: 入力バッチ})
-   
 ```
 
 
